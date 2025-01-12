@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="icon" href="data:">
+<title>ITクイズ</title>
+</head><body>
+<script type="module">
+import { startQuiz } from "https://code4fukui.github.io/q4js/q4.js";
+import { CSV } from "https://js.sabae.cc/CSV.js";
+import { rnd } from "https://js.sabae.cc/rnd.js";
+import { shuffle } from "https://js.sabae.cc/shuffle.js";
+
+const url = "https://code4fukui.github.io/it-words/it-words.csv";
+const data = await CSV.fetchJSON(url);
+
+for (;;) {
+  const quiz = data.map((d, idx) => {
+    const wrongans = [];
+    for (let i = 0; i < 4; i++) {
+      const n = rnd(data.length);
+      if (n == idx) continue;
+      wrongans.push(data[n].word);
+    }
+    return [d.description, d.word, ...wrongans];
+  });
+  shuffle(quiz);
+  quiz.length = 10;
+
+  const point = await startQuiz({ title: "ITクイズ", quiz });
+  if (point == quiz.length) {
+    alert("全問正解！おめでとう！")
+  } else if (point >= quiz.length * .8) {
+    alert(point + "問正解！合格！")
+  } else {
+    alert(point + "問正解でした")
+  }
+  if (!confirm("もう一回？")) break;
+}
+
+</script>
+</body>
