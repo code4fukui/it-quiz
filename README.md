@@ -1,5 +1,7 @@
 # IT Quiz
 
+> 日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
+
 An online quiz game that tests your knowledge of IT-related terms and concepts.
 
 ## Demo
