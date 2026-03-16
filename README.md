@@ -26,4 +26,4 @@ None. The quiz runs in the browser.
 The quiz questions are sourced from the [IT Terminology](https://github.com/code4fukui/it-words) dataset.
 
 ## License
-This project is licensed under the MIT License.
+MIT License — see [LICENSE](LICENSE).
